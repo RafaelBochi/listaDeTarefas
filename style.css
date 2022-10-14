@@ -50,7 +50,6 @@ main {
 
 .listsBasic {
     width: 85%;
-    height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -68,6 +67,7 @@ main {
     gap: 4%;
     background-color: rgb(200, 200, 200);
     margin-right: 1%;
+    margin-bottom: 1%;
 }
 
 .listsBasic .title {
@@ -84,6 +84,19 @@ main {
     background-color: rgb(154, 154, 154);
     width: 100%;
     padding: 1%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listsBasic .date span {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.listsBasic .date span:hover {
+    color: red;
 }
 
 .basicListDados {
@@ -97,6 +110,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    display: none;
 }   
 
 .basicListDados .title {
