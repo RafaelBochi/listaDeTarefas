@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 62.5%
+}
+
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.addLists {
+    height: 100%;
+    width: 15%;
+    border-right: 2px solid black;
+    padding: 1%;
+}
+
+.addLists > div {
+    width: 90%;
+    height: 23%;
+    font-size: 2.0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2%;
+    gap: 5%;
+    border: 2px solid black;
+    border-radius: 15%;
+    cursor: pointer;
+}
+
+.addLists > div img {
+    width: 40%;
+}
+
+.listsBasic {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2%;
+}
+
+.listsBasic > div {
+    width: 15%;
+    height: 25%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 4%;
+    background-color: rgb(200, 200, 200);
+    margin-right: 1%;
+}
+
+.listsBasic .title {
+    font-size: 2.0rem;
+}
+
+.listsBasic .descrip {
+    text-align: justify;
+}
+
+.listsBasic .date {
+    position: relative;
+    top: 16%;
+    background-color: rgb(154, 154, 154);
+    width: 100%;
+    padding: 1%;
+}
+
+.basicListDados {
+    position: absolute;
+    height: 40%;
+    width: 25%;
+    top: 25%;
+    left: 40%;
+    background-color: rgb(152, 152, 152);
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}   
+
+.basicListDados .title {
+    padding: 2%;
+    outline: 0;
+}
+
+.basicListDados .descrip {
+    height: 50%;
+    padding: 2%;
+    outline: 0;
+}
+
+.basicListDados .date {
+    outline: 0;
+    padding: 1%;
+}
+
