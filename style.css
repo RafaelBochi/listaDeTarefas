@@ -56,7 +56,8 @@ main {
     padding: 2%;
 }
 
-.listsBasic > div {
+.listBasic {
+    position: relative;
     width: 15%;
     height: 25%;
     border: 2px solid black;
@@ -71,16 +72,26 @@ main {
 }
 
 .listsBasic .title {
-    font-size: 2.0rem;
+    word-wrap: break-word;
+    max-width: 80%;
+    width: 80%;
+    position: relative;
+    font-size: 1.4rem;
+    text-align: center;
+    top: -3%;
 }
 
 .listsBasic .descrip {
+    word-wrap: break-word;
     text-align: justify;
+    width: 90%;
+    position: relative;
+    top: -10%;
 }
 
 .listsBasic .date {
-    position: relative;
-    top: 16%;
+    position: absolute;
+    bottom: 0%;
     background-color: rgb(154, 154, 154);
     width: 100%;
     padding: 1%;
@@ -90,13 +101,41 @@ main {
     justify-content: space-between;
 }
 
-.listsBasic .date span {
-    font-size: 1.3rem;
+.listBasic .actions {
+    position: absolute;
+    right: 2%;
+    top: 1%;
+    width: 3%;
+    height: 20%;
+}
+
+.listBasic .actions .itensActions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 300%;
+    top: -10%;
+    width: 1300%;
+    height: 150%;
+    gap: 20%;
+    padding: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    z-index: 999;
+}
+
+.listBasic .actions .itensActions .remove {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
     cursor: pointer;
 }
 
-.listsBasic .date span:hover {
-    color: red;
+.listBasic .actions .itensActions .complete {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    cursor: pointer;
 }
 
 .basicListDados {
@@ -110,8 +149,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
-    display: none;
+    gap: 2%;
 }   
 
 .basicListDados .title {
@@ -119,7 +157,7 @@ main {
     outline: 0;
 }
 
-.basicListDados .descrip {
+.basicListDados .descrip {  
     height: 50%;
     padding: 2%;
     outline: 0;
@@ -130,3 +168,13 @@ main {
     padding: 1%;
 }
 
+
+/*///////////////////////////////////////*/
+
+.open-close {
+    display: none !important;
+}
+
+.inputValid {
+    border: 2px solid red !important;
+}

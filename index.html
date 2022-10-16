@@ -15,7 +15,7 @@
 
         <section class="addLists" id="addLists">
 
-            <div class="addListBasic" id="addListBasic">
+            <div class="addListBasic">
 
                 <p>
                     Adicione lista
@@ -28,23 +28,30 @@
         </section>
 
         <section class="listsBasic" id="listsBasic">
-
-            
+           
+            <div>
+                <div>
+                    <div>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="basicListDados" id="basicListDados">
+        <section class="basicListDados open-close">
 
             <h2>
                 ADICIONE OS DADOS DA LISTA
             </h2>
 
-            <input type="text" placeholder="Titulo" id="titleInputBasic" class="title">
+            <input type="text" placeholder="Titulo" id="titleInputBasic" class="title" autocomplete="off" maxlength="36">
 
-            <input type="text" placeholder="Descrição" id="descripInputBasic" class="descrip">
+            <input type="text" placeholder="Descrição" id="descripInputBasic" class="descrip" autocomplete="off" maxlength="200">
 
-            <input type="datetime-local" id="dateInputBasic" class="date">
+            <input placeholder="Data de Entrega" class="date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="dateInputBasic" />
 
-            <button id="createListBasic" class="btnCreate">
+            <button id="createListBasic" class="btnCreate" aria-placeholder="">
                 Criar lista
             </button>
 
@@ -52,6 +59,7 @@
 
     </main>
 
+    <script src="https://kit.fontawesome.com/27b2971d49.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 
 </body>
