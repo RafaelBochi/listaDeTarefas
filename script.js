@@ -1,128 +1,142 @@
-const btnAddBasicList = document.querySelector('.addListBasic');
-const dadosBasicList = document.querySelector('.basicListDados');
+const btnAddBasicList = document.querySelector(".addListBasic");
+const dadosBasicList = document.querySelector(".basicListDados");
 
-    let inputTitleBasicList = document.querySelector('#titleInputBasic');
-    let inputDescripBasicList = document.querySelector('#descripInputBasic');
-    let inputDateBasicList = document.querySelector('#dateInputBasic');
-    
+let inputTitleBasicList = document.querySelector("#titleInputBasic");
+let inputDescripBasicList = document.querySelector("#descripInputBasic");
+let inputDateBasicList = document.querySelector("#dateInputBasic");
 
 const openDadosBasic = () => {
-
-    dadosBasicList.classList.toggle('open-close');
-    inputDateBasicList.value = "";
-    inputDescripBasicList.value = "";
-    inputTitleBasicList.value = "";
-}
+  dadosBasicList.classList.toggle("open-close");
+  inputDateBasicList.value = "";
+  inputDescripBasicList.value = "";
+  inputTitleBasicList.value = "";
+};
 
 btnAddBasicList.addEventListener("click", () => openDadosBasic());
 
-const basicLists = document.querySelector('#listsBasic')
-const btnCreateBasicList = document.querySelector('#createListBasic');
-
+const basicLists = document.querySelector("#listsBasic");
+const btnCreateBasicList = document.querySelector("#createListBasic");
 
 const createBasicList = () => {
+  const divListBasic = document.createElement("div");
+  divListBasic.classList.add("listBasic");
 
-    const divListBasic = document.createElement('div');
-divListBasic.classList.add('listBasic');
+  const actionsBasicList = document.createElement("div");
+  actionsBasicList.classList.add("actions");
 
-    const actionsBasicList = document.createElement('div')
-    actionsBasicList.classList.add('actions');
+  const iconActionsBasciList = document.createElement("i");
+  iconActionsBasciList.classList.add("fa-solid");
+  iconActionsBasciList.classList.add("fa-ellipsis-vertical");
+  iconActionsBasciList.classList.add("fa-2x");
 
-    const iconActionsBasciList = document.createElement('i');
-    iconActionsBasciList.classList.add('fa-solid');
-    iconActionsBasciList.classList.add('fa-ellipsis-vertical');
-    iconActionsBasciList.classList.add('fa-2x');
+  actionsBasicList.appendChild(iconActionsBasciList);
 
-    actionsBasicList.appendChild(iconActionsBasciList);
+  const divItensActions = document.createElement("div");
+  divItensActions.classList.add("itensActions");
+  divItensActions.classList.add("open-close");
 
-    const divItensActions = document.createElement('div');
-    divItensActions.classList.add('itensActions');
-    divItensActions.classList.add('open-close');
+  const remove = document.createElement("div");
+  remove.classList.add("remove");
 
+  const textRemove = document.createElement("p");
+  textRemove.innerHTML = "Remover";
 
-    const remove = document.createElement('div');
-    remove.classList.add('remove');
+  const iconRemove = document.createElement("i");
+  iconRemove.classList.add("fa-solid");
+  iconRemove.classList.add("fa-trash-can");
 
-    const textRemove = document.createElement('p');
-    textRemove.innerHTML = "Remover";
+  remove.appendChild(textRemove);
+  remove.appendChild(iconRemove);
 
-    const iconRemove = document.createElement('i');
-    iconRemove.classList.add('fa-solid')
-    iconRemove.classList.add('fa-trash-can')
+  const complete = document.createElement("div");
+  complete.classList.add("complete");
 
-    remove.addEventListener('click', () => removeBasicList(remove, divListBasic))
+  const textComplete = document.createElement("p");
+  textComplete.innerHTML = "Concluir";
 
-    remove.appendChild(textRemove);
-    remove.appendChild(iconRemove);
+  const iconComplete = document.createElement("i");
+  iconComplete.classList.add("fa-solid");
+  iconComplete.classList.add("fa-check");
 
-    const complete = document.createElement('div');
-    complete.classList.add('complete');
+  complete.appendChild(textComplete);
+  complete.appendChild(iconComplete);
 
-    const textComplete = document.createElement('p');
-    textComplete.innerHTML = "Concluir";
+  divItensActions.appendChild(remove);
+  divItensActions.appendChild(complete);
 
-    const iconComplete = document.createElement('i');
-    iconComplete.classList.add('fa-solid')
-    iconComplete.classList.add('fa-check')
+  actionsBasicList.appendChild(divItensActions);
 
-    complete.appendChild(textComplete);
-    complete.appendChild(iconComplete);
+  const titleBasicList = document.createElement("h1");
+  titleBasicList.classList.add("title");
+  titleBasicList.innerHTML = inputTitleBasicList.value;
 
+  const decripBasicList = document.createElement("p");
+  decripBasicList.classList.add("descrip");
+  decripBasicList.innerHTML = inputDescripBasicList.value;
 
-    divItensActions.appendChild(remove);
-    divItensActions.appendChild(complete);
+  const dateBasicList = document.createElement("div");
+  dateBasicList.classList.add("date");
 
-    actionsBasicList.appendChild(divItensActions)
+  dateBasicList.innerHTML = `Data de entrega: dias`;
 
-    
-    iconActionsBasciList.addEventListener('click', () => openItensActions(actionsBasicList))
+  divListBasic.appendChild(actionsBasicList);
+  divListBasic.appendChild(titleBasicList);
+  divListBasic.appendChild(decripBasicList);
+  divListBasic.appendChild(dateBasicList);
 
-    const titleBasicList = document.createElement('h1');
-    titleBasicList.classList.add('title');
-    titleBasicList.innerHTML = inputTitleBasicList.value;
+  basicLists.appendChild(divListBasic);
 
-    const decripBasicList = document.createElement('p');
-    decripBasicList.classList.add('descrip');
-    decripBasicList.innerHTML = inputDescripBasicList.value;
+  btnAddBasicList.click();
 
-    const dateBasicList = document.createElement('div');
-    dateBasicList.classList.add('date');
-    dateBasicList.innerHTML = inputDateBasicList.value;
-
-    divListBasic.appendChild(actionsBasicList)
-    divListBasic.appendChild(titleBasicList);
-    divListBasic.appendChild(decripBasicList);
-    divListBasic.appendChild(dateBasicList);
-
-    basicLists.appendChild(divListBasic);
-
-    btnAddBasicList.click();
-}
+  iconActionsBasciList.addEventListener("click", () =>
+    openItensActions(actionsBasicList)
+  );
+  complete.addEventListener("click", () =>
+    completeBasicList(complete, divListBasic, decripBasicList, dateBasicList)
+  );
+  remove.addEventListener("click", () => removeBasicList(remove, divListBasic));
+};
 
 const openItensActions = (actionsBasicList) => {
-    let btnActions = document.querySelectorAll('.actions');
+  let btnActions = document.querySelectorAll(".actions");
 
-    for(let btnAction of btnActions) {
-        if (btnAction.isSameNode(actionsBasicList)){
-            btnAction.children[1].classList.toggle('open-close');
-        }
+  for (let btnAction of btnActions) {
+    if (btnAction.isSameNode(actionsBasicList)) {
+      btnAction.children[1].classList.toggle("open-close");
     }
+  }
 };
 
 const removeBasicList = (remove, divListBasic) => {
-    let lists = document.querySelectorAll('.remove');
+  let lists = document.querySelectorAll(".remove");
 
-    for (let list of lists) {
-        if (list.isSameNode(remove)) {
-            divListBasic.remove();
-        }
-        
+  for (let list of lists) {
+    if (list.isSameNode(remove)) {
+      divListBasic.remove();
     }
-}
+  }
+};
 
-btnCreateBasicList.addEventListener('click', () => createBasicList());
+const completeBasicList = (
+  complete,
+  divListBasic,
+  decripBasicList,
+  dateBasicList
+) => {
+  let lists = document.querySelectorAll(".complete");
 
+  for (let list of lists) {
+    if (list.isSameNode(complete)) {
+      const icon = document.createElement("i");
+      icon.classList.add("fa-regular");
+      icon.classList.add("fa-circle-check");
+      icon.classList.add("fa-4x");
 
+      decripBasicList.remove();
 
+      divListBasic.insertBefore(icon, dateBasicList);
+    }
+  }
+};
 
-
+btnCreateBasicList.addEventListener("click", () => createBasicList());

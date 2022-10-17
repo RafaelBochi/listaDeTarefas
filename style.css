@@ -65,7 +65,6 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    gap: 4%;
     background-color: rgb(200, 200, 200);
     margin-right: 1%;
     margin-bottom: 1%;
@@ -83,7 +82,7 @@ main {
 
 .listsBasic .descrip {
     word-wrap: break-word;
-    text-align: justify;
+    text-align: center;
     width: 90%;
     position: relative;
     top: -10%;
@@ -177,4 +176,9 @@ main {
 
 .inputValid {
     border: 2px solid red !important;
+}
+
+.fa-regular {
+    position: relative;
+    top: -10%;
 }
