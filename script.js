@@ -21,6 +21,39 @@ const createBasicList = () => {
   const divListBasic = document.createElement("div");
   divListBasic.classList.add("listBasic");
 
+/*  
+
+  let dataAtual = new Date();
+  let diaAtual = Number(dataAtual.getDate());
+  let mesAtual = Number(dataAtual.getMonth()) + 1;
+
+  let dataEntrega = new Date(inputDateBasicList.value);
+  let diaEntrega = Number(dataEntrega.getDate());
+  let mesEntrega = Number(dataEntrega.getMonth()) + 1;
+
+  let diasDiferenca = diaEntrega - diaAtual;
+
+  let diasTotal = diasDiferenca;
+  
+  for(let i = mesAtual; i >= mesEntrega; i++) {
+
+    if (i == 2) {
+      diasTotal+=28
+    }
+
+    else if (i % 2 === 0) {
+      diasTotal+=31
+    }
+
+    else {
+      diasTotal+=30
+    }
+  }
+
+*/
+
+  // Criação botão remover e concluir
+
   const actionsBasicList = document.createElement("div");
   actionsBasicList.classList.add("actions");
 
@@ -66,6 +99,8 @@ const createBasicList = () => {
 
   actionsBasicList.appendChild(divItensActions);
 
+  // Criação Conteudo
+
   const titleBasicList = document.createElement("h1");
   titleBasicList.classList.add("title");
   titleBasicList.innerHTML = inputTitleBasicList.value;
@@ -86,7 +121,7 @@ const createBasicList = () => {
 
   basicLists.appendChild(divListBasic);
 
-  btnAddBasicList.click();
+  btnAddBasicList.click()
 
   iconActionsBasciList.addEventListener("click", () =>
     openItensActions(actionsBasicList)
@@ -139,4 +174,7 @@ const completeBasicList = (
   }
 };
 
-btnCreateBasicList.addEventListener("click", () => createBasicList());
+
+
+
+btnCreateBasicList.addEventListener("click",  () => createBasicList());

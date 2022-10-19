@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+:root {
+    --cor-escura: #0D0D0D;
+    --cor-clara: #F2F2F2;
+    --cor-2clara: #CCD0D9;
+    --cor-azulclaro: #8F96A6;
+    --cor-azul: #4C5059;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +20,8 @@ html {
 }
 
 body {
+    font-family: sans-serif;
+    background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
     height: 100%;
 }
 
@@ -23,32 +33,36 @@ main {
 }
 
 .addLists {
+    position: fixed;
     height: 100%;
-    width: 15%;
-    border-right: 2px solid black;
+    width: 14%;
+    border-right: 2px solid var(--cor-azul);
     padding: 1%;
 }
 
 .addLists > div {
-    width: 90%;
+    margin: auto;
+    width: 100%;
     height: 23%;
     font-size: 2.0rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 2%;
-    gap: 5%;
-    border: 2px solid black;
-    border-radius: 15%;
+    padding-top: 5%;
+    gap: 20%;
+    color: var(--cor-azul);
+    border: 2px solid var(--cor-azul);
     cursor: pointer;
 }
 
-.addLists > div img {
-    width: 40%;
+.addLists > div i {
+    color: var(--cor-azul);
 }
 
 .listsBasic {
+    position: relative;
+    left: 15%;
     width: 85%;
     display: flex;
     flex-direction: row;
@@ -60,12 +74,12 @@ main {
     position: relative;
     width: 15%;
     height: 25%;
-    border: 2px solid black;
+    border: 2px solid var(--cor-escura);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgb(200, 200, 200);
+    background-color: var(--cor-azulclaro);
     margin-right: 1%;
     margin-bottom: 1%;
 }
@@ -90,11 +104,12 @@ main {
 
 .listsBasic .date {
     position: absolute;
-    bottom: 0%;
-    background-color: rgb(154, 154, 154);
-    width: 100%;
-    padding: 1%;
-    height: 10%;
+    bottom: -1%;
+    background-color: var(--cor-azul);
+    color: var(--cor-2clara);
+    width: 101%;
+    padding: 2%;
+    height: 13%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -143,7 +158,9 @@ main {
     width: 25%;
     top: 25%;
     left: 40%;
-    background-color: rgb(152, 152, 152);
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    border-radius: 10% 0% 10% 10% / 10% 10% 10% 0% ;
     padding: 2%;
     display: flex;
     flex-direction: column;
