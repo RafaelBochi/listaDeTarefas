@@ -4,8 +4,8 @@
     --cor-escura: #0D0D0D;
     --cor-clara: #F2F2F2;
     --cor-2clara: #CCD0D9;
-    --cor-azulclaro: #8F96A6;
-    --cor-azul: #4C5059;
+    --cor-azulclaro: #0093E9;
+    --cor-azul: #9599E2;
 }
 
 * {
@@ -23,6 +23,8 @@ body {
     font-family: sans-serif;
     background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
     height: 100%;
+
+    
 }
 
 main {
@@ -62,26 +64,24 @@ main {
 
 .listsBasic {
     position: relative;
-    left: 15%;
-    width: 85%;
+    left: 20%;
+    width: 75%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 2%;
 }
 
 .listBasic {
     position: relative;
-    width: 15%;
+    width: 18%;
     height: 25%;
     border: 2px solid var(--cor-escura);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--cor-azulclaro);
-    margin-right: 1%;
-    margin-bottom: 1%;
+    background-color: var(--cor-azul);
+    margin: 1%;
 }
 
 .listsBasic .title {
@@ -105,15 +105,19 @@ main {
 .listsBasic .date {
     position: absolute;
     bottom: -1%;
-    background-color: var(--cor-azul);
-    color: var(--cor-2clara);
+    color: var(--cor-escura);
     width: 101%;
     padding: 2%;
-    height: 13%;
+    height: 12%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15%;
+    border-top: 1px solid var(--cor-escura);
 }
+
+.listsBasic 
 
 .listBasic .actions {
     position: absolute;
@@ -158,8 +162,9 @@ main {
     width: 25%;
     top: 25%;
     left: 40%;
-    background-color: #4158D0;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-color: #8BC6EC;
+background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
     border-radius: 10% 0% 10% 10% / 10% 10% 10% 0% ;
     padding: 2%;
     display: flex;
@@ -184,6 +189,11 @@ main {
     padding: 1%;
 }
 
+.basicListDados .number {
+    outline: 0;
+    padding: 1%;
+}
+
 
 /*///////////////////////////////////////*/
 
@@ -193,6 +203,7 @@ main {
 
 .inputValid {
     border: 2px solid red !important;
+    color: red;
 }
 
 .fa-regular {

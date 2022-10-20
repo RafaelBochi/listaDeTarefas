@@ -5,6 +5,8 @@ let inputTitleBasicList = document.querySelector("#titleInputBasic");
 let inputDescripBasicList = document.querySelector("#descripInputBasic");
 let inputDateBasicList = document.querySelector("#dateInputBasic");
 
+let nivelPrioridade = document.querySelector('.number');
+
 function openDadosBasic() {
   dadosBasicList.classList.toggle("open-close");
   inputDateBasicList.value = "";
@@ -13,6 +15,21 @@ function openDadosBasic() {
 };
 
 btnAddBasicList.addEventListener("click", openDadosBasic);
+
+const validInput = () => {
+  if (inputTitleBasicList.value.length  < 5) {
+    return inputTitleBasicList.classList.add("inputValid")
+  }
+  else if (inputDescripBasicList.value.length  < 5) {
+    return inputDescripBasicList.classList.add("inputValid")
+  }
+  else if (inputDateBasicList.value.length  < 3) {
+    return inputDateBasicList.classList.add("inputValid")
+  }
+  else {
+    createBasicList()
+  }
+}
 
 const basicLists = document.querySelector("#listsBasic");
 const btnCreateBasicList = document.querySelector("#createListBasic");
@@ -112,15 +129,29 @@ function createBasicList() {
   const dateBasicList = document.createElement("div");
   dateBasicList.classList.add("date");
 
-  dateBasicList.innerHTML = `Data de entrega: ${diasTotal} dias`;
+  dateBasicList.innerHTML = `<p>Data de entrega: ${diasTotal} dias<p>Prioridade ${nivelPrioridade.value}<p>`;
 
   divListBasic.appendChild(actionsBasicList);
   divListBasic.appendChild(titleBasicList);
   divListBasic.appendChild(decripBasicList);
   divListBasic.appendChild(dateBasicList);
 
+if (nivelPrioridade.value == 1) {
+  divListBasic.classList.add("pr-um");
   basicLists.appendChild(divListBasic);
+}
 
+let prUM = document.querySelector('.pr-um')
+
+if (nivelPrioridade.value == 2) {
+  basicLists.insertBefore(divListBasic, prUM)
+}
+
+else if (nivelPrioridade.value == 3) {
+  basicLists.insertBefore(divListBasic, basicLists.firstChild)
+}
+
+  
   btnAddBasicList.click()
 
   iconActionsBasciList.addEventListener("click", () =>
@@ -162,6 +193,7 @@ const completeBasicList = (
 
   for (let list of lists) {
     if (list.isSameNode(complete)) {
+
       const icon = document.createElement("i");
       icon.classList.add("fa-regular");
       icon.classList.add("fa-circle-check");
@@ -170,6 +202,8 @@ const completeBasicList = (
       decripBasicList.remove();
 
       divListBasic.insertBefore(icon, dateBasicList);
+
+      
     }
   }
 };
@@ -177,4 +211,4 @@ const completeBasicList = (
 
 
 
-btnCreateBasicList.addEventListener("click", createBasicList);
+btnCreateBasicList.addEventListener("click", () => validInput());
