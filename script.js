@@ -12,6 +12,7 @@ function openDadosBasic() {
   inputDateBasicList.value = "";
   inputDescripBasicList.value = "";
   inputTitleBasicList.value = "";
+  nivelPrioridade.value = "";
 };
 
 btnAddBasicList.addEventListener("click", openDadosBasic);
