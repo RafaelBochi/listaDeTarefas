@@ -5,23 +5,23 @@ let inputTitleBasicList = document.querySelector("#titleInputBasic");
 let inputDescripBasicList = document.querySelector("#descripInputBasic");
 let inputDateBasicList = document.querySelector("#dateInputBasic");
 
-const openDadosBasic = () => {
+function openDadosBasic() {
   dadosBasicList.classList.toggle("open-close");
   inputDateBasicList.value = "";
   inputDescripBasicList.value = "";
   inputTitleBasicList.value = "";
 };
 
-btnAddBasicList.addEventListener("click", () => openDadosBasic());
+btnAddBasicList.addEventListener("click", openDadosBasic);
 
 const basicLists = document.querySelector("#listsBasic");
 const btnCreateBasicList = document.querySelector("#createListBasic");
 
-const createBasicList = () => {
+function createBasicList() {
   const divListBasic = document.createElement("div");
   divListBasic.classList.add("listBasic");
 
-/*  
+  
 
   let dataAtual = new Date();
   let diaAtual = Number(dataAtual.getDate());
@@ -35,7 +35,7 @@ const createBasicList = () => {
 
   let diasTotal = diasDiferenca;
   
-  for(let i = mesAtual; i >= mesEntrega; i++) {
+  for(let i = mesAtual + 1; i <= mesEntrega; i++) {
 
     if (i == 2) {
       diasTotal+=28
@@ -50,7 +50,7 @@ const createBasicList = () => {
     }
   }
 
-*/
+
 
   // Criação botão remover e concluir
 
@@ -112,7 +112,7 @@ const createBasicList = () => {
   const dateBasicList = document.createElement("div");
   dateBasicList.classList.add("date");
 
-  dateBasicList.innerHTML = `Data de entrega: dias`;
+  dateBasicList.innerHTML = `Data de entrega: ${diasTotal} dias`;
 
   divListBasic.appendChild(actionsBasicList);
   divListBasic.appendChild(titleBasicList);
@@ -177,4 +177,4 @@ const completeBasicList = (
 
 
 
-btnCreateBasicList.addEventListener("click",  () => createBasicList());
+btnCreateBasicList.addEventListener("click", createBasicList);
