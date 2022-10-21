@@ -23,7 +23,7 @@ body {
     font-family: sans-serif;
     background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
     height: 100%;
-
+    overflow-x: hidden;
     
 }
 
@@ -64,8 +64,8 @@ main {
 
 .listsBasic {
     position: relative;
-    left: 20%;
-    width: 75%;
+    left: 15%;
+    width: 89%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -73,7 +73,7 @@ main {
 
 .listBasic {
     position: relative;
-    width: 18%;
+    width: 15%;
     height: 25%;
     border: 2px solid var(--cor-escura);
     display: flex;
@@ -81,7 +81,27 @@ main {
     justify-content: space-evenly;
     align-items: center;
     background-color: var(--cor-azul);
-    margin: 1%;
+    margin: 2%;
+    margin-top: 3%;
+    transition: all 1s;
+    animation: create 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes create {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+.listBasic:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(10px 5px 4px var(--cor-escura));
 }
 
 .listsBasic .title {
@@ -120,6 +140,7 @@ main {
 .listsBasic 
 
 .listBasic .actions {
+    cursor: pointer;
     position: absolute;
     right: 2%;
     top: 1%;
@@ -133,9 +154,6 @@ main {
     flex-direction: column;
     left: 300%;
     top: -10%;
-    width: 1300%;
-    height: 150%;
-    gap: 20%;
     padding: 100%;
     background-color: rgb(255, 255, 255);
     border: 1px solid black;
@@ -147,9 +165,17 @@ main {
     flex-direction: row;
     gap: 5%;
     cursor: pointer;
+
 }
 
 .listBasic .actions .itensActions .complete {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    cursor: pointer;
+}
+
+.listBasic .actions .itensActions .edit {
     display: flex;
     flex-direction: row;
     gap: 5%;
@@ -194,6 +220,50 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
     padding: 1%;
 }
 
+.prioridade {
+    position: absolute;
+    left: 2%;
+    top: 2%;
+}
+
+.editBasicList {
+    position: absolute;
+    height: 40%;
+    width: 25%;
+    top: 25%;
+    left: 40%;
+    background-color: #8BC6EC;
+background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
+    border-radius: 10% 0% 10% 10% / 10% 10% 10% 0% ;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 2%;
+}   
+
+.editBasicList .title {
+    padding: 2%;
+    outline: 0;
+}
+
+.editBasicList .descrip {  
+    height: 50%;
+    padding: 2%;
+    outline: 0;
+}
+
+.editBasicList .date {
+    outline: 0;
+    padding: 1%;
+}
+
+.editBasicList .numberEdit {
+    outline: 0;
+    padding: 1%;
+}
+
 
 /*///////////////////////////////////////*/
 
@@ -203,6 +273,9 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 
 .inputValid {
     border: 2px solid red !important;
+}
+
+.inputValid::placeholder {
     color: red;
 }
 

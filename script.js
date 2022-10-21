@@ -1,10 +1,10 @@
 const btnAddBasicList = document.querySelector(".addListBasic");
 const dadosBasicList = document.querySelector(".basicListDados");
+let divEditBasicList = document.querySelector('.editBasicList');
 
 let inputTitleBasicList = document.querySelector("#titleInputBasic");
 let inputDescripBasicList = document.querySelector("#descripInputBasic");
 let inputDateBasicList = document.querySelector("#dateInputBasic");
-
 let nivelPrioridade = document.querySelector('.number');
 
 function openDadosBasic() {
@@ -32,10 +32,13 @@ const validInput = () => {
   }
 }
 
+
 const basicLists = document.querySelector("#listsBasic");
 const btnCreateBasicList = document.querySelector("#createListBasic");
 
 function createBasicList() {
+  
+
   const divListBasic = document.createElement("div");
   divListBasic.classList.add("listBasic");
 
@@ -112,10 +115,28 @@ function createBasicList() {
   complete.appendChild(textComplete);
   complete.appendChild(iconComplete);
 
+  const edit = document.createElement("div");
+  edit.classList.add("edit");
+
+  const textEdit = document.createElement("p");
+  textEdit.innerHTML = "Editar";
+
+  const iconEdit = document.createElement("i");
+  iconEdit.classList.add("fa-solid");
+  iconEdit.classList.add("fa-pen"); 
+
+  edit.appendChild(textEdit);
+  edit.appendChild(iconEdit);
+
   divItensActions.appendChild(remove);
   divItensActions.appendChild(complete);
+  divItensActions.appendChild(edit);
 
   actionsBasicList.appendChild(divItensActions);
+
+  let prioridadeDiv = document.createElement("p");
+  prioridadeDiv.classList.add('prioridade');
+  prioridadeDiv.innerHTML = `Prioridade ${nivelPrioridade.value}`
 
   // Criação Conteudo
 
@@ -130,8 +151,9 @@ function createBasicList() {
   const dateBasicList = document.createElement("div");
   dateBasicList.classList.add("date");
 
-  dateBasicList.innerHTML = `<p>Data de entrega: ${diasTotal} dias<p>Prioridade ${nivelPrioridade.value}<p>`;
+  dateBasicList.innerHTML = `<p>Data de entrega: ${diasTotal} dias`;
 
+  divListBasic.appendChild(prioridadeDiv);
   divListBasic.appendChild(actionsBasicList);
   divListBasic.appendChild(titleBasicList);
   divListBasic.appendChild(decripBasicList);
@@ -162,6 +184,10 @@ else if (nivelPrioridade.value == 3) {
     completeBasicList(complete, divListBasic, decripBasicList, dateBasicList)
   );
   remove.addEventListener("click", () => removeBasicList(remove, divListBasic));
+
+  edit.addEventListener('click', () => editBasicList (divListBasic, titleBasicList, decripBasicList, inputDateBasicList, inputDescripBasicList, inputTitleBasicList, nivelPrioridade))
+
+
 };
 
 const openItensActions = (actionsBasicList) => {
@@ -184,6 +210,8 @@ const removeBasicList = (remove, divListBasic) => {
   }
 };
 
+
+
 const completeBasicList = (
   complete,
   divListBasic,
@@ -192,24 +220,51 @@ const completeBasicList = (
 ) => {
   let lists = document.querySelectorAll(".complete");
 
+ 
+
   for (let list of lists) {
-    if (list.isSameNode(complete)) {
+    if (list.isSameNode(complete) && !divListBasic.classList.contains('concluida')) {
 
       const icon = document.createElement("i");
       icon.classList.add("fa-regular");
       icon.classList.add("fa-circle-check");
       icon.classList.add("fa-4x");
 
+      divListBasic.classList.add('concluida')
+
       decripBasicList.remove();
 
       divListBasic.insertBefore(icon, dateBasicList);
 
-      
-    }
+      }
+
+
   }
 };
 
+let inputEditTitleBasicList = document.querySelector("#titleEditInputBasic");
+let inputEditDescripBasicList = document.querySelector("#descripEditInputBasic");
+let inputEditDateBasicList = document.querySelector("#dateEditInputBasic");
+let nivelPrioridadeEdit = document.querySelector('.numberEdit');
+let btnEditBasicList = document.querySelector('#editListBasic');
 
+const editBasicList = (divListBasic, titleBasicList, decripBasicList) => {
+
+  divEditBasicList.classList.toggle('open-close');
+
+  inputEditTitleBasicList.value = titleBasicList.innerHTML;
+  inputEditDescripBasicList.value = decripBasicList.innerHTML;
+
+}
+
+btnEditBasicList.addEventListener('click', () => {
+
+  inputDateBasicList.value = inputEditDateBasicList.value;
+  inputDescripBasicList.value = inputEditDescripBasicList.value;
+  inputTitleBasicList.value = inputEditTitleBasicList;
+  nivelPrioridade = nivelPrioridadeEdit.value;
+
+})
 
 
 btnCreateBasicList.addEventListener("click", () => validInput());
