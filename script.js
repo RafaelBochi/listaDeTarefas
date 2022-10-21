@@ -7,6 +7,12 @@ let inputDescripBasicList = document.querySelector("#descripInputBasic");
 let inputDateBasicList = document.querySelector("#dateInputBasic");
 let nivelPrioridade = document.querySelector('.number');
 
+let inputEditTitleBasicList = document.querySelector("#titleEditInputBasic");
+let inputEditDescripBasicList = document.querySelector("#descripEditInputBasic");
+let inputEditDateBasicList = document.querySelector("#dateEditInputBasic");
+let nivelPrioridadeEdit = document.querySelector('.numberEdit');
+let btnEditBasicList = document.querySelector('#editListBasic');
+
 function openDadosBasic() {
   dadosBasicList.classList.toggle("open-close");
   inputDateBasicList.value = "";
@@ -33,28 +39,21 @@ const validInput = () => {
 }
 
 
-const basicLists = document.querySelector("#listsBasic");
-const btnCreateBasicList = document.querySelector("#createListBasic");
+let diasTotal;
 
-function createBasicList() {
-  
-
-  const divListBasic = document.createElement("div");
-  divListBasic.classList.add("listBasic");
-
-  
+function getDate(data) {
 
   let dataAtual = new Date();
   let diaAtual = Number(dataAtual.getDate());
   let mesAtual = Number(dataAtual.getMonth()) + 1;
 
-  let dataEntrega = new Date(inputDateBasicList.value);
+  let dataEntrega = new Date(data);
   let diaEntrega = Number(dataEntrega.getDate());
   let mesEntrega = Number(dataEntrega.getMonth()) + 1;
 
   let diasDiferenca = diaEntrega - diaAtual;
 
-  let diasTotal = diasDiferenca;
+  diasTotal = diasDiferenca;
   
   for(let i = mesAtual + 1; i <= mesEntrega; i++) {
 
@@ -70,7 +69,22 @@ function createBasicList() {
       diasTotal+=30
     }
   }
+}
 
+const basicLists = document.querySelector("#listsBasic");
+const btnCreateBasicList = document.querySelector("#createListBasic");
+
+function createBasicList() {
+  
+  let title = inputTitleBasicList.value;
+  let descrip = inputDescripBasicList.value;
+  let prioridade = nivelPrioridade.value;
+  let data = inputDateBasicList.value;
+
+  const divListBasic = document.createElement("div");
+  divListBasic.classList.add("listBasic");
+
+  getDate(data);
 
 
   // Criação botão remover e concluir
@@ -136,17 +150,17 @@ function createBasicList() {
 
   let prioridadeDiv = document.createElement("p");
   prioridadeDiv.classList.add('prioridade');
-  prioridadeDiv.innerHTML = `Prioridade ${nivelPrioridade.value}`
+  prioridadeDiv.innerHTML = `Prioridade ${prioridade}`
 
   // Criação Conteudo
 
   const titleBasicList = document.createElement("h1");
   titleBasicList.classList.add("title");
-  titleBasicList.innerHTML = inputTitleBasicList.value;
+  titleBasicList.innerHTML = title;
 
   const decripBasicList = document.createElement("p");
   decripBasicList.classList.add("descrip");
-  decripBasicList.innerHTML = inputDescripBasicList.value;
+  decripBasicList.innerHTML = descrip;
 
   const dateBasicList = document.createElement("div");
   dateBasicList.classList.add("date");
@@ -168,14 +182,17 @@ let prUM = document.querySelector('.pr-um')
 
 if (nivelPrioridade.value == 2) {
   basicLists.insertBefore(divListBasic, prUM)
+
+  divListBasic.classList.add("pr-dois");
 }
 
 else if (nivelPrioridade.value == 3) {
   basicLists.insertBefore(divListBasic, basicLists.firstChild)
+
+  divListBasic.classList.add("pr-tres");
 }
 
-  
-  btnAddBasicList.click()
+openDadosBasic();
 
   iconActionsBasciList.addEventListener("click", () =>
     openItensActions(actionsBasicList)
@@ -185,8 +202,10 @@ else if (nivelPrioridade.value == 3) {
   );
   remove.addEventListener("click", () => removeBasicList(remove, divListBasic));
 
-  edit.addEventListener('click', () => editBasicList (divListBasic, titleBasicList, decripBasicList, inputDateBasicList, inputDescripBasicList, inputTitleBasicList, nivelPrioridade))
 
+  btnEditBasicList.addEventListener('click',() => editBasicList(divListBasic, title, edit, descrip, prioridade, data))
+
+  edit.addEventListener('click', () => openEditBasicList (title, descrip, prioridade, edit))
 
 };
 
@@ -242,29 +261,58 @@ const completeBasicList = (
   }
 };
 
-let inputEditTitleBasicList = document.querySelector("#titleEditInputBasic");
-let inputEditDescripBasicList = document.querySelector("#descripEditInputBasic");
-let inputEditDateBasicList = document.querySelector("#dateEditInputBasic");
-let nivelPrioridadeEdit = document.querySelector('.numberEdit');
-let btnEditBasicList = document.querySelector('#editListBasic');
+const editBasicList = (divListBasic, title, descrip, prioridade, edit, data) => {
 
-const editBasicList = (divListBasic, titleBasicList, decripBasicList) => {
+  
 
-  divEditBasicList.classList.toggle('open-close');
+  let lists = document.querySelectorAll(".edit");
 
-  inputEditTitleBasicList.value = titleBasicList.innerHTML;
-  inputEditDescripBasicList.value = decripBasicList.innerHTML;
+  for (let list of lists) {
+    if (list.isSameNode(edit)) {
+
+      title = inputEditTitleBasicList.value;
+      descrip = inputEditDescripBasicList.value;
+      prioridade = nivelPrioridadeEdit.value;
+      data = inputEditDateBasicList.value
+      
+      inputTitleBasicList.value = title;
+      inputDescripBasicList.value = descrip;
+      nivelPrioridade.value = prioridade;
+      inputDateBasicList.value = data;
+
+      
+        divListBasic.remove();
+        createBasicList();
+        divEditBasicList.classList.add('open-close');
+      
+
+    }
+  }
 
 }
 
-btnEditBasicList.addEventListener('click', () => {
+const openEditBasicList = (title, descrip, prioridade, edit) => {
 
-  inputDateBasicList.value = inputEditDateBasicList.value;
-  inputDescripBasicList.value = inputEditDescripBasicList.value;
-  inputTitleBasicList.value = inputEditTitleBasicList;
-  nivelPrioridade = nivelPrioridadeEdit.value;
+  let lists = document.querySelectorAll(".edit");
 
-})
+ 
+
+  for (let list of lists) {
+    if (list.isSameNode(edit)) {
+
+
+      divEditBasicList.classList.remove('open-close');
+
+      inputEditTitleBasicList.value = title;
+      inputEditDescripBasicList.value = descrip;
+      nivelPrioridadeEdit.value = prioridade;
+
+    }
+  }
+
+}
+
+
 
 
 btnCreateBasicList.addEventListener("click", () => validInput());

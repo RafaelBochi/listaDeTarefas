@@ -102,6 +102,7 @@ main {
 .listBasic:hover {
     transform: scale(1.1);
     filter: drop-shadow(10px 5px 4px var(--cor-escura));
+    z-index: 999;
 }
 
 .listsBasic .title {
@@ -232,9 +233,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
     width: 25%;
     top: 25%;
     left: 40%;
-    background-color: #8BC6EC;
-background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-
+    background-image: linear-gradient( 68.3deg,  rgba(245,177,97,1) 0.4%, rgba(236,54,110,1) 100.2% );
     border-radius: 10% 0% 10% 10% / 10% 10% 10% 0% ;
     padding: 2%;
     display: flex;
@@ -282,4 +281,16 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
 .fa-regular {
     position: relative;
     top: -10%;
+}
+
+.pr-um {
+    background-image: radial-gradient( circle 321px at 8.3% 75.7%,  rgba(209,247,241,1) 0%, rgba(249,213,213,1) 81% );
+}
+
+.pr-dois {
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% );
+}
+
+.pr-tres {
+    background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
 }
