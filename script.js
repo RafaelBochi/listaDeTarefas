@@ -1,17 +1,19 @@
 const btnAddBasicList = document.querySelector(".addListBasic");
 const dadosBasicList = document.querySelector(".basicListDados");
-let divEditBasicList = document.querySelector('.editBasicList');
+let divEditBasicList = document.querySelector(".editBasicList");
 
 let inputTitleBasicList = document.querySelector("#titleInputBasic");
 let inputDescripBasicList = document.querySelector("#descripInputBasic");
 let inputDateBasicList = document.querySelector("#dateInputBasic");
-let nivelPrioridade = document.querySelector('.number');
+let nivelPrioridade = document.querySelector(".number");
 
 let inputEditTitleBasicList = document.querySelector("#titleEditInputBasic");
-let inputEditDescripBasicList = document.querySelector("#descripEditInputBasic");
+let inputEditDescripBasicList = document.querySelector(
+  "#descripEditInputBasic"
+);
 let inputEditDateBasicList = document.querySelector("#dateEditInputBasic");
-let nivelPrioridadeEdit = document.querySelector('.numberEdit');
-let btnEditBasicList = document.querySelector('#editListBasic');
+let nivelPrioridadeEdit = document.querySelector(".numberEdit");
+let btnEditBasicList = document.querySelector("#editListBasic");
 
 function openDadosBasic() {
   dadosBasicList.classList.toggle("open-close");
@@ -19,30 +21,25 @@ function openDadosBasic() {
   inputDescripBasicList.value = "";
   inputTitleBasicList.value = "";
   nivelPrioridade.value = "";
-};
+}
 
 btnAddBasicList.addEventListener("click", openDadosBasic);
 
 const validInput = () => {
-  if (inputTitleBasicList.value.length  < 5) {
-    return inputTitleBasicList.classList.add("inputValid")
+  if (inputTitleBasicList.value.length < 5) {
+    return inputTitleBasicList.classList.add("inputValid");
+  } else if (inputDescripBasicList.value.length < 5) {
+    return inputDescripBasicList.classList.add("inputValid");
+  } else if (inputDateBasicList.value.length < 3) {
+    return inputDateBasicList.classList.add("inputValid");
+  } else {
+    createBasicList();
   }
-  else if (inputDescripBasicList.value.length  < 5) {
-    return inputDescripBasicList.classList.add("inputValid")
-  }
-  else if (inputDateBasicList.value.length  < 3) {
-    return inputDateBasicList.classList.add("inputValid")
-  }
-  else {
-    createBasicList()
-  }
-}
-
+};
 
 let diasTotal;
 
 function getDate(data) {
-
   let dataAtual = new Date();
   let diaAtual = Number(dataAtual.getDate());
   let mesAtual = Number(dataAtual.getMonth()) + 1;
@@ -54,19 +51,14 @@ function getDate(data) {
   let diasDiferenca = diaEntrega - diaAtual;
 
   diasTotal = diasDiferenca;
-  
-  for(let i = mesAtual + 1; i <= mesEntrega; i++) {
 
+  for (let i = mesAtual + 1; i <= mesEntrega; i++) {
     if (i == 2) {
-      diasTotal+=28
-    }
-
-    else if (i % 2 === 0) {
-      diasTotal+=31
-    }
-
-    else {
-      diasTotal+=30
+      diasTotal += 28;
+    } else if (i % 2 === 0) {
+      diasTotal += 31;
+    } else {
+      diasTotal += 30;
     }
   }
 }
@@ -75,7 +67,6 @@ const basicLists = document.querySelector("#listsBasic");
 const btnCreateBasicList = document.querySelector("#createListBasic");
 
 function createBasicList() {
-  
   let title = inputTitleBasicList.value;
   let descrip = inputDescripBasicList.value;
   let prioridade = nivelPrioridade.value;
@@ -85,7 +76,6 @@ function createBasicList() {
   divListBasic.classList.add("listBasic");
 
   getDate(data);
-
 
   // Criação botão remover e concluir
 
@@ -137,7 +127,7 @@ function createBasicList() {
 
   const iconEdit = document.createElement("i");
   iconEdit.classList.add("fa-solid");
-  iconEdit.classList.add("fa-pen"); 
+  iconEdit.classList.add("fa-pen");
 
   edit.appendChild(textEdit);
   edit.appendChild(iconEdit);
@@ -149,8 +139,8 @@ function createBasicList() {
   actionsBasicList.appendChild(divItensActions);
 
   let prioridadeDiv = document.createElement("p");
-  prioridadeDiv.classList.add('prioridade');
-  prioridadeDiv.innerHTML = `Prioridade ${prioridade}`
+  prioridadeDiv.classList.add("prioridade");
+  prioridadeDiv.innerHTML = `Prioridade ${prioridade}`;
 
   // Criação Conteudo
 
@@ -173,26 +163,24 @@ function createBasicList() {
   divListBasic.appendChild(decripBasicList);
   divListBasic.appendChild(dateBasicList);
 
-if (nivelPrioridade.value == 1) {
-  divListBasic.classList.add("pr-um");
-  basicLists.appendChild(divListBasic);
-}
+  if (nivelPrioridade.value == 1) {
+    divListBasic.classList.add("pr-um");
+    basicLists.appendChild(divListBasic);
+  }
 
-let prUM = document.querySelector('.pr-um')
+  let prUM = document.querySelector(".pr-um");
 
-if (nivelPrioridade.value == 2) {
-  basicLists.insertBefore(divListBasic, prUM)
+  if (nivelPrioridade.value == 2) {
+    basicLists.insertBefore(divListBasic, prUM);
 
-  divListBasic.classList.add("pr-dois");
-}
+    divListBasic.classList.add("pr-dois");
+  } else if (nivelPrioridade.value == 3) {
+    basicLists.insertBefore(divListBasic, basicLists.firstChild);
 
-else if (nivelPrioridade.value == 3) {
-  basicLists.insertBefore(divListBasic, basicLists.firstChild)
+    divListBasic.classList.add("pr-tres");
+  }
 
-  divListBasic.classList.add("pr-tres");
-}
-
-openDadosBasic();
+  openDadosBasic();
 
   iconActionsBasciList.addEventListener("click", () =>
     openItensActions(actionsBasicList)
@@ -202,12 +190,10 @@ openDadosBasic();
   );
   remove.addEventListener("click", () => removeBasicList(remove, divListBasic));
 
-
-  btnEditBasicList.addEventListener('click',() => editBasicList(divListBasic, title, edit, descrip, prioridade, data))
-
-  edit.addEventListener('click', () => openEditBasicList (title, descrip, prioridade, edit))
-
-};
+  edit.addEventListener("click", () =>
+    openEditBasicList(edit, divListBasic, title, descrip, prioridade, data)
+  );
+}
 
 const openItensActions = (actionsBasicList) => {
   let btnActions = document.querySelectorAll(".actions");
@@ -229,8 +215,6 @@ const removeBasicList = (remove, divListBasic) => {
   }
 };
 
-
-
 const completeBasicList = (
   complete,
   divListBasic,
@@ -239,80 +223,73 @@ const completeBasicList = (
 ) => {
   let lists = document.querySelectorAll(".complete");
 
- 
-
   for (let list of lists) {
-    if (list.isSameNode(complete) && !divListBasic.classList.contains('concluida')) {
-
+    if (
+      list.isSameNode(complete) &&
+      !divListBasic.classList.contains("concluida")
+    ) {
       const icon = document.createElement("i");
       icon.classList.add("fa-regular");
       icon.classList.add("fa-circle-check");
       icon.classList.add("fa-4x");
 
-      divListBasic.classList.add('concluida')
+      divListBasic.classList.add("concluida");
 
       decripBasicList.remove();
 
       divListBasic.insertBefore(icon, dateBasicList);
-
-      }
-
-
+    }
   }
 };
 
-const editBasicList = (divListBasic, title, descrip, prioridade, edit, data) => {
-
-  
-
+const openEditBasicList = (edit, divListBasic, title, descrip, prioridade, data) => {
   let lists = document.querySelectorAll(".edit");
+
+  let listaAtual = divListBasic;
 
   for (let list of lists) {
     if (list.isSameNode(edit)) {
-
-      title = inputEditTitleBasicList.value;
-      descrip = inputEditDescripBasicList.value;
-      prioridade = nivelPrioridadeEdit.value;
-      data = inputEditDateBasicList.value
-      
-      inputTitleBasicList.value = title;
-      inputDescripBasicList.value = descrip;
-      nivelPrioridade.value = prioridade;
-      inputDateBasicList.value = data;
-
-      
-        divListBasic.remove();
-        createBasicList();
-        divEditBasicList.classList.add('open-close');
-      
-
-    }
-  }
-
-}
-
-const openEditBasicList = (title, descrip, prioridade, edit) => {
-
-  let lists = document.querySelectorAll(".edit");
-
- 
-
-  for (let list of lists) {
-    if (list.isSameNode(edit)) {
-
-
-      divEditBasicList.classList.remove('open-close');
+      divEditBasicList.classList.remove("open-close");
 
       inputEditTitleBasicList.value = title;
       inputEditDescripBasicList.value = descrip;
       nivelPrioridadeEdit.value = prioridade;
-
     }
   }
 
-}
+  btnEditBasicList.addEventListener("click", () =>
+  editBasicList(edit, listaAtual, title, descrip, prioridade, data)
+);
 
+};
 
+const editBasicList = (
+  edit,
+  listaAtual,
+  title,
+  descrip,
+  prioridade,
+  data
+) => {
+  let listas = document.querySelectorAll(".edit");
 
+  title = inputEditTitleBasicList.value;
+  descrip = inputEditDescripBasicList.value;
+  prioridade = nivelPrioridadeEdit.value;
+  data = inputEditDateBasicList.value;
+
+  inputTitleBasicList.value = title;
+  inputDescripBasicList.value = descrip;
+  nivelPrioridade.value = prioridade;
+  inputDateBasicList.value = data;
+
+  for (let lista of listas) {
+    if (lista.isSameNode(edit)) {
+      createBasicList();
+      listaAtual.remove();
+      divEditBasicList.classList.add("open-close");
+    }
+  }
+};
 
 btnCreateBasicList.addEventListener("click", () => validInput());
