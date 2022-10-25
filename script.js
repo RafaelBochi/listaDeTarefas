@@ -7,7 +7,7 @@ let divEditList = document.querySelector(".editList");
 let inputTitleList = document.querySelector("#titleInput");
 let inputDescripList = document.querySelector("#descripInput");
 let inputDateList = document.querySelector("#dateInput");
-let nivelPriority = document.querySelector("#priority");
+let nivelPriority = document.querySelector("#priorityInput");
 
 let inputEditTitleList = document.querySelector("#titleEditInput");
 let inputEditDescripList = document.querySelector(
@@ -30,12 +30,12 @@ function openDados() {
 btnAddList.addEventListener("click", openDados);
 
 const validInput = () => {
-  if (inputTitleList.value.length < 5) {
+  if (inputTitleList.value.trim().length < 5) {
     return inputTitleList.classList.add("inputValid");
-  } else if (inputDescripList.value.length < 5) {
+  } else if (inputDescripList.value.trim().length < 5) {
     return inputDescripList.classList.add("inputValid");
-  } else if (inputDateList.value.length < 3) {
-    return inputDateList.classList.add("inputValid");
+  } else if (nivelPriority.value == "") {
+    return nivelPriority.classList.add("inputValid");
   } else {
     createList();
   }
@@ -143,7 +143,7 @@ function createList() {
   actionsList.appendChild(divItensActions);
 
   let prioridadeDiv = document.createElement("p");
-  prioridadeDiv.classList.add("prioridade");
+  prioridadeDiv.classList.add("priority");
   prioridadeDiv.innerHTML = `Prioridade ${priority}`;
 
   // Criação Conteudo
@@ -159,7 +159,23 @@ function createList() {
   const dateList = document.createElement("div");
   dateList.classList.add("date");
 
-  dateList.innerHTML = `<p>Data de entrega: ${diasTotal} dias`;
+  if (date == "") {
+    dateList.innerHTML = `Sem data de entrega`;
+  }
+
+  else if (diasTotal == 0) {
+    dateList.innerHTML = `Data de entrega: HOJE`;
+  }
+
+  else if (diasTotal == 1) {
+    dateList.innerHTML = `Data de entrega: 1 dia restante`
+  }
+
+  else {
+    dateList.innerHTML = `Data de entrega: 1 dias restante`
+  }
+
+ 
 
   divList.appendChild(prioridadeDiv);
   divList.appendChild(actionsList);
@@ -211,7 +227,7 @@ const openItensActions = (actionsList) => {
   }
 };
 
-const removeBasicList = (remove, divList) => {
+const removeList = (remove, divList) => {
   let lists = document.querySelectorAll(".remove");
 
   for (let list of lists) {
@@ -288,16 +304,16 @@ const editList = (
   priority = nivelPriorityEdit.value;
   date = inputEditDateList.value;
 
-  inputTitleBasicList.value = title;
-  inputDescripBasicList.value = descrip;
-  nivelPrioridade.value = prioridade;
-  inputDateBasicList.value = data;
+  inputTitleList.value = title;
+  inputDescripList.value = descrip;
+  nivelPriority.value = priority;
+  inputDateList.value = date;
 
   for (let lista of listas) {
     if (lista.isSameNode(edit)) {
-      createBasicList();
+      createList();
       listaAtual.remove();
-      divEditBasicList.classList.add("open-close");
+      divEditList.classList.add("open-close");
     }
   }
 
@@ -327,8 +343,6 @@ const localStorage = () => {
 const refreshLocalStorage = () => {
 
   const listsFromLocalStorage = JSON.parse(window.localStorage.getItem("lists"));
-
-  console.log(listsFromLocalStorage)
 
   if (!listsFromLocalStorage) return;
 
@@ -423,7 +437,7 @@ const refreshLocalStorage = () => {
   divList.appendChild(decripList);
   divList.appendChild(dateList);
 
-  if (complete) {
+  if (listLS.completed) {
     const icon = document.createElement("i");
       icon.classList.add("fa-regular");
       icon.classList.add("fa-circle-check");
@@ -459,10 +473,10 @@ const refreshLocalStorage = () => {
   complete.addEventListener("click", () =>
     completeList(complete, divList, decripList, dateList)
   );
-  remove.addEventListener("click", () => removeBasicList(remove, divList));
+  remove.addEventListener("click", () => removeList(remove, divList));
 
   edit.addEventListener("click", () =>
-    openEditBasicList(edit, divList, listLS.titleLS, listLS.descripLS, listLS.priorityLS, listLS.dateLS)
+    openEditList(edit, divList, listLS.titleLS, listLS.descripLS, listLS.priorityLS, listLS.dateLS)
   );
 
 }
