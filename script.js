@@ -200,7 +200,7 @@ function createList() {
     divList.classList.add("pr-tres");
   }
 
-  openDados();
+  dadosList.style.display = "none"
 
   iconActionsList.addEventListener("click", () =>
     openItensActions(actionsList)
