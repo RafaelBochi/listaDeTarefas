@@ -172,7 +172,7 @@ function createList() {
   }
 
   else {
-    dateList.innerHTML = `Data de entrega: 1 dias restante`
+    dateList.innerHTML = `Data de entrega: ${diasTotal} dias restante`
   }
 
  
